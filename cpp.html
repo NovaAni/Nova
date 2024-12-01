@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning C++ with Nova Learning</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Consolas', monospace;
+        }
+        .question {
+            font-size: 24px;
+            margin: 30px;
+        }
+        .option {
+            background-color: #000000;
+            color: #00FF00;
+            border: 2px solid red;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <script>
+        const questions = [
+            {"question": "What does C++ stand for?", "options": ["A. C with classes", "B. C with functions", "C. C with pointers", "D. C with arrays"], "correct": "A"},
+            {"question": "Which of the following is a data type in C++?", "options": ["A. int", "B. double", "C. char", "D. All of the above"], "correct": "D"},
+            {"question": "Which operator is used to allocate memory dynamically in C++?", "options": ["A. new", "B. malloc", "C. malloc()", "D. alloc"], "correct": "A"},
+            {"question": "What is the main function signature in C++?", "options": ["A. int main()", "B. void main()", "C. main()", "D. None of the above"], "correct": "A"},
+            {"question": "What is the default value of a global variable in C++?", "options": ["A. 0", "B. Undefined", "C. NULL", "D. Garbage Value"], "correct": "A"},
+            {"question": "Which of the following is used for function overloading in C++?", "options": ["A. Same function name", "B. Same function parameters", "C. Same return type", "D. Different function name"], "correct": "A"},
+            {"question": "What is a constructor in C++?", "options": ["A. A function that returns a value", "B. A special function that is called when an object is created", "C. A function to initialize static variables", "D. None of the above"], "correct": "B"},
+            {"question": "Which of the following is used for inheritance in C++?", "options": ["A. : operator", "B. -> operator", "C. :: operator", "D. . operator"], "correct": "A"},
+            {"question": "What is the keyword used to exit a loop early in C++?", "options": ["A. exit", "B. break", "C. continue", "D. return"], "correct": "B"},
+            {"question": "What is the purpose of the 'this' pointer in C++?", "options": ["A. To refer to the current object", "B. To store the address of the current class", "C. To store the address of the current function", "D. None of the above"], "correct": "A"}
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const questionData = questions[currentQuestion];
+
+            questionElement.innerText = questionData.question;
+            optionsElement.innerHTML = '';
+
+            questionData.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'option';
+                button.innerText = option;
+                button.onclick = () => nextQuestion(option[0]);
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function nextQuestion(answer) {
+            if (answer === questions[currentQuestion].correct) {
+                score++;
+            }
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                alert(`Quiz Over! Your final score is: ${score}/${questions.length}`);
+            }
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>

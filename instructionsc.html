@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Coding with CodeNova</title>
+    
+</head>
+<body id="h">
+    <style>#h{
+        font-family:Consolas;
+    }
+    #countdownText{
+        font-family: Consolas;
+    }
+    </style>
+    
+
+    <link rel="stylesheet" href="code3.css">
+    <header>
+        <div style="width: 100%; text-align: center;">
+            <h1>Rules</h1>
+          </div>
+          
+          
+    </header>
+    
+    
+    <main>
+        
+        <h1>Instructions</h1>
+        <li>For every question solved correctly the more combos delivered to Null </li>
+        <li>Ten questions are to be answered</li>
+        <li>Scores will be displayed at the end</li>
+        <li> Have Fun!</li>
+        <p id="countdownText">Starting in 5</p>
+        
+        <script>
+            // Initial countdown value
+let countdown = 5;
+        
+        // Function to update the countdown
+        function updateTimer() {
+          // Update the text with "Starting in" followed by the countdown number
+          document.getElementById('countdownText').textContent = "Starting in " + countdown;
+        
+          // Decrease the countdown value
+          countdown--;
+          
+        
+          // When countdown reaches 0, stop the timer and redirect to html.html
+          if (countdown < 0 ) {
+            
+            clearInterval(countdown); // Stop the interval
+            window.location.href = "cpp.html"; // Redirect to html.html
+          }
+        }
+        
+        // Start the countdown timer, update every 1000ms (1 second)
+        let timerInterval = setInterval(updateTimer, 1000);
+        
+        // Ensure it starts immediately without waiting for the first interval
+        updateTimer();
+        </script>
+        
+        
+        <style>
+            #timer{
+                font-family: Consolas;
+                color: white;
+            }
+            h1{
+                font-family:Consolas;
+                font-size: xx-large;
+                margin-bottom: 80px;
+                margin-top: 20px;
+                align-self: center;
+            }
+            li{
+                font-size:large;
+                align-self:center;
+                padding: 5px;
+                font-family: Consolas;
+                padding: 10px;
+                
+            }
+            
+        </style>
+    </main>
+</body>
+</html>

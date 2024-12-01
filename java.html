@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Java with Nova Learning</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Consolas', monospace;
+        }
+        .question {
+            font-size: 24px;
+            margin: 30px 0;
+        }
+        .option {
+            background-color: #000000;
+            color: #00FF00;
+            border: 6px ridge #00FF00;
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <script>
+        // List of questions and answers for the C++ quiz
+        const questions = [
+            {"question": "1 .Which of the following is a valid Java keyword?",
+             "options": ["A. void", "B. public", "C. class", "D. All of the above"], "correct": "D"},
+            {"question": "2 .What is the default value of a 'boolean' variable in Java??",
+             "options": ["A. true", "B. false", "C. 0", "D. null"], "correct": "B"},
+            {"question": "3 .Which method is used to start a Java program?",
+             "options": ["A. start()", "B. run()", "C.main()", "D.execute()"], "correct": "C"},
+            {"question": "4 .What is the size of an int in Java?",
+             "options": ["A. 8 bits", "B. 16 bits", "C. 32 bits", "D. 64 bits"], "correct": "C"},
+            {"question": "5 .Which of the following is not a primitive data type in Java?",
+             "options": ["A. int", "B. float", "C. String", "D. char"], "correct": "C"},
+            {"question": "6 .What does the final keyword mean when applied to a variable?",
+             "options": ["A. The variable can be changed", "B. The variable cannot be changed", "C. The variable is deleted after use",
+                         "D. The variable can only be used once"], "correct": "B"},
+            {"question": "7 .Which operator is used to compare two values in Java?",
+             "options": ["A. =", "B. ==",
+                         "C. !=", "D. >"], "correct": "B"},
+            {"question": "8 .Which of these is a valid for loop in Java?",
+             "options": ["A. :for (i = 0; i < 10; i++) ", "B. for (int i = 0; i < 10; i++)", "C. for (i = 0, i++)", "D. for (int i < 10; i++)"], "correct": "B"},
+            {"question": "9 .Which package is imported by default in all Java programs?",
+             "options": ["A. java.io", "B. java.util", "C. java.lang", "D. java.net"], "correct": "C"},
+            {"question": "10 .Which of the following is used to handle exceptions in Java?",
+             "options": ["A. try-catch", "B. if-else",
+                         "C. switch", "D. throw"], "correct": "A"}
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            const questionData = questions[currentQuestion];
+            document.getElementById('question').innerText = questionData.question;
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+
+            questionData.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'option';
+                button.innerText = option;
+                button.onclick = () => nextQuestion(option[0]);
+                optionsDiv.appendChild(button);
+            });
+        }
+
+        function nextQuestion(answer) {
+            if (answer === questions[currentQuestion].correct) {
+                score++;
+            }
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                alert(`Quiz Over! Your final score is: ${score}/10`);
+            }
+        }
+
+        // Start the quiz by displaying the first question
+        displayQuestion();
+    </script>
+</body>
+</html>

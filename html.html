@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning HTML with Nova Learning</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Consolas', monospace;
+        }
+        .question {
+            font-size: 24px;
+            margin: 30px;
+        }
+        .option {
+            background-color: #000000;
+            color: #00FF00;
+            border: 2px solid red;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <script>
+        const questions = [
+            {"question": "1. What does HTML stand for?", "options": ["A. Hyper Text Markup Language", "B. Home Tool Markup Language", "C. Hyperlinks and Text Markup Language", "D. High-level Text Markup Language"], "correct": "A"},
+            {"question": "2. Which HTML tag is used to define a hyperlink?", "options": ["A. <link>", "B. <a>", "C. <href>", "D. <url>"], "correct": "B"},
+            {"question": "3. What is the correct HTML element for inserting a line break?", "options": ["A. <lb>", "B. <break>", "C. <br>", "D. <newline>"], "correct": "C"},
+            {"question": "4. Which attribute is used to provide an alternate text for an image if the image cannot be displayed?", "options": ["A. alt", "B. src", "C. title", "D. description"], "correct": "A"},
+            {"question": "5. How can you make a numbered list in HTML?", "options": ["A. <ul>", "B. <ol>", "C. <li>", "D. <list>"], "correct": "B"},
+            {"question": "6. Which HTML tag is used to define the largest heading?", "options": ["A. <h6>", "B. <h1>", "C. <header>", "D. <head>"], "correct": "B"},
+            {"question": "7. What is the correct syntax for creating a comment in HTML?", "options": ["A. <!-- Comment -->", "B. /* Comment */", "C. // Comment", "D. <comment> Comment </comment>"], "correct": "A"},
+            {"question": "8. Which attribute is used to open a hyperlink in a new tab?", "options": ["A. target=_tab", "B. target=_blank", "C. target=_newtab", "D. target=new"], "correct": "B"},
+            {"question": "9. What is the purpose of the <title> tag in an HTML document?", "options": ["A. To define the main heading of the page", "B. To define a title for the page in the browser toolbar", "C. To create a title for hyperlinks", "D. To specify the style of the page"], "correct": "B"},
+            {"question": "10. Which HTML element is used to define the metadata of a document?", "options": ["A. <meta>", "B. <data>", "C. <info>", "D. <head>"], "correct": "A"}
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            questionElement.innerText = questions[currentQuestion].question;
+            optionsElement.innerHTML = '';
+
+            questions[currentQuestion].options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'option';
+                button.innerText = option;
+                button.onclick = () => nextQuestion(option[0]);
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function nextQuestion(answer) {
+            if (answer === questions[currentQuestion].correct) {
+                score++;
+            }
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                alert(`Quiz Over! Your final score is: ${score}/10`);
+            }
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
